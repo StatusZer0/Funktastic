@@ -1,0 +1,27 @@
+{
+	"songs": [
+		[
+			"light-it-up",
+			"bf",
+			[
+				86,
+				86,
+				86
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Normal",
+	"weekCharacters": [
+		"bf",
+		"bf",
+		"gf"
+	],
+	"storyName": "LIGHT IT UP MOTHA FUCKAAASSS",
+	"weekName": "LIGHT IT UP MOTHA FUCKAAASSS",
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

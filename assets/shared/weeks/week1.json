@@ -1,0 +1,27 @@
+{
+	"songs": [
+		[
+			"test",
+			"bf",
+			[
+				86,
+				86,
+				86
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Normal",
+	"weekCharacters": [
+		"bf",
+		"bf",
+		"gf"
+	],
+	"storyName": "Testing shit",
+	"weekName": "testing shit",
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}
