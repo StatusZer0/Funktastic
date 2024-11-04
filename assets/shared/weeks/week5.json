@@ -1,0 +1,27 @@
+{
+	"songs": [
+		[
+			"quaoar",
+			"bf",
+			[
+				86,
+				86,
+				86
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Normal",
+	"weekCharacters": [
+		"bf",
+		"bf",
+		"gf"
+	],
+	"storyName": "dont spoil it dudee",
+	"weekName": "dont spoil it dudee",
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

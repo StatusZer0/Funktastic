@@ -1,0 +1,27 @@
+{
+	"songs": [
+		[
+			"bike",
+			"bf",
+			[
+				86,
+				86,
+				86
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Normal",
+	"weekCharacters": [
+		"bf",
+		"bf",
+		"gf"
+	],
+	"storyName": "hollup I gotta go get my bike rq",
+	"weekName": "hollup I gotta go get my bike rq",
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}
