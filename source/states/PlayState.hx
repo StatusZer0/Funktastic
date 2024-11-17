@@ -370,6 +370,9 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
+			case 'light-it-up': 
+				new LightItUp();
+				FlxG.log.add("light it up baybeeeee"); //WE LIGHTIN IT UP TODAY
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -405,9 +408,9 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			//add(gfGroup);
-			//add(dadGroup);
-			//add(boyfriendGroup);
+			add(gfGroup);
+			add(dadGroup);
+			add(boyfriendGroup);
 		}
 		
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
@@ -952,7 +955,7 @@ class PlayState extends MusicBeatState
 			for (i in 0...opponentStrums.length) {
 				setOnScripts('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnScripts('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				opponentStrums.members[i].visible = false;
+				//if(ClientPrefs.data.middleScroll) opponentStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
@@ -1017,7 +1020,7 @@ class PlayState extends MusicBeatState
 						{
 							note.copyAlpha = false;
 							note.alpha = note.multAlpha;
-							if(!note.mustPress)
+							if(ClientPrefs.data.middleScroll && !note.mustPress)
 								note.alpha *= 0.35;
 						}
 					});
@@ -1392,9 +1395,12 @@ class PlayState extends MusicBeatState
 						}
 
 						if (sustainNote.mustPress) sustainNote.x += FlxG.width / 2; // general offset
-						sustainNote.x += 310;
-						if(noteColumn > 1) //Up and Right
-							sustainNote.x += FlxG.width / 2 + 25;
+						else if(ClientPrefs.data.middleScroll)
+						{
+							sustainNote.x += 310;
+							if(noteColumn > 1) //Up and Right
+								sustainNote.x += FlxG.width / 2 + 25;
+						}
 					}
 				}
 
@@ -1402,10 +1408,13 @@ class PlayState extends MusicBeatState
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				swagNote.x += 310;
-				if(noteColumn > 1) //Up and Right
+				else if(ClientPrefs.data.middleScroll)
 				{
-					swagNote.x += FlxG.width / 2 + 25;
+					swagNote.x += 310;
+					if(noteColumn > 1) //Up and Right
+					{
+						swagNote.x += FlxG.width / 2 + 25;
+					}
 				}
 				if(!noteTypes.contains(swagNote.noteType))
 					noteTypes.push(swagNote.noteType);
@@ -1439,9 +1448,9 @@ class PlayState extends MusicBeatState
 			case "Change Character":
 				var charType:Int = 0;
 				switch(event.value1.toLowerCase()) {
-					case 'gf' | 'girlfriend' | '1':
+					case 'gf' | 'girlfriend':
 						charType = 2;
-					case 'dad' | 'opponent' | '0':
+					case 'dad' | 'opponent':
 						charType = 1;
 					default:
 						var val1:Int = Std.parseInt(event.value1);
@@ -1491,7 +1500,7 @@ class PlayState extends MusicBeatState
 	public var skipArrowStartTween:Bool = false; //for lua
 	private function generateStaticArrows(player:Int):Void
 	{
-		var strumLineX:Float = STRUM_X_MIDDLESCROLL;
+		var strumLineX:Float = ClientPrefs.data.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X;
 		var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 		for (i in 0...4)
 		{
@@ -1500,7 +1509,7 @@ class PlayState extends MusicBeatState
 			if (player < 1)
 			{
 				if(!ClientPrefs.data.opponentStrums) targetAlpha = 0;
-				targetAlpha = 0.35;
+				else if(ClientPrefs.data.middleScroll) targetAlpha = 0.35;
 			}
 
 			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player);
@@ -1517,9 +1526,12 @@ class PlayState extends MusicBeatState
 				playerStrums.add(babyArrow);
 			else
 			{
-				babyArrow.x += 310;
-				if(i > 1) { //Up and Right
-					babyArrow.x += FlxG.width / 2 + 25;
+				if(ClientPrefs.data.middleScroll)
+				{
+					babyArrow.x += 310;
+					if(i > 1) { //Up and Right
+						babyArrow.x += FlxG.width / 2 + 25;
+					}
 				}
 				opponentStrums.add(babyArrow);
 			}

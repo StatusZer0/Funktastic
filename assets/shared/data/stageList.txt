@@ -1,9 +1,5 @@
 stage
-spooky
-philly
-limo
-mall
-mallEvil
-school
-schoolEvil
-tank
+light-it-up
+bike
+11
+quaoar
