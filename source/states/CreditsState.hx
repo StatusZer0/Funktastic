@@ -38,6 +38,17 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			["FUNKTASTIC Team"],
+			["AgaTHX", "agath", "Director, Charter", "https://www.youtube.com/@agathxgd", "fc03ec"],
+			["Zer0", "zer0", "Co-director, Coder", "https://www.youtube.com/@StatusZer00", "cc00ff"],
+			["QdaArt", "qda", "Lead Artist", "https://twitter.com/QGamer70602", "fff761"],
+			["CamiiiX3", "camiii", "Charter", "https://www.youtube.com/@XxNErxOxX", "424242"],
+			["Somebody", "la", "Menu Music Composer (we cannot find you anywhere. pls contact agath if you want your credit)", "https://google.com", "595959"],
+			["Music Artists"],
+			["Tanger", "la", "V0.1 Music Artist", "https://www.youtube.com/@Tangermusic", "42eb5b"],
+			["Camellia", "la", "V0.1 Music Artist", "https://www.youtube.com/@Cametek.CamelliaOfficial", "992c2c"],
+			[""],
+			[""],
 			["Psych Engine Team"],
 			["Shadow Mario",		"shadowmario",		"Main Programmer and Head of Psych Engine",					"https://ko-fi.com/shadowmario",	"444444"],
 			["Riveren",				"riveren",			"Main Artist/Animator of Psych Engine",						"https://x.com/riverennn",			"14967B"],

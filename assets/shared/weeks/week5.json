@@ -12,15 +12,15 @@
 	],
 	"hiddenUntilUnlocked": false,
 	"hideFreeplay": false,
-	"weekBackground": "stage",
+	"weekBackground": "quaoar",
 	"difficulties": "Normal",
 	"weekCharacters": [
 		"bf",
 		"bf",
 		"gf"
 	],
-	"storyName": "dont spoil it dudee",
-	"weekName": "dont spoil it dudee",
+	"storyName": "kuiper belt reference holy shit",
+	"weekName": "kuiper belt reference holy shit",
 	"hideStoryMode": true,
 	"weekBefore": "tutorial",
 	"startUnlocked": true

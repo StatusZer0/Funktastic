@@ -1,7 +1,7 @@
 {
 	"song": {
 		"speed": 3,
-		"stage": "stage",
+		"stage": "11",
 		"player1": "bf",
 		"player2": "dad",
 		"events": [],
@@ -8901,6 +8901,6 @@
 		"gfVersion": "gf",
 		"bpm": 154,
 		"needsVoices": true,
-		"song": "(11"
+		"song": "11"
 	}
 }

@@ -3,14 +3,14 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Note;
 
-class LightItUp extends BaseStage
+class Quaoar extends BaseStage
 {
 	public var bg:BGSprite;
 	public var started:Bool = false;
 
 	override function create()
 	{
-		bg = new BGSprite('light-it-up/bg', -250, 250, 1, 1);
+		bg = new BGSprite('quaoar/bg', -250, 250, 1, 1);
 		bg.scale.set(1.75, 1.75);
 		bg.alpha = 0;
 		add(bg);
@@ -27,16 +27,15 @@ class LightItUp extends BaseStage
 	}
 
 	override function beatHit()
-	{
-		bg.scale.set(1.85, 1.85);
-	}
-
-	// Note Hit/Miss
-	override function goodNoteHit(note:Note)
-	{
-		FlxTween.tween(bg, { alpha: 1 }, 0.02);
-	}
-
+		{
+			bg.scale.set(1.85, 1.85);
+		}
+	
+		// Note Hit/Miss
+		override function goodNoteHit(note:Note)
+		{
+			FlxTween.tween(bg, { alpha: 1 }, 0.02);
+		}
 	
 	override function countdownTick(count:Countdown, num:Int)
 	{

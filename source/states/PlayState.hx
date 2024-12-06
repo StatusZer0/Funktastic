@@ -370,9 +370,10 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
-			case 'light-it-up': 
-				new LightItUp();
-				FlxG.log.add("light it up baybeeeee"); //WE LIGHTIN IT UP TODAY
+			case 'light-it-up': new LightItUp();    //Light It Up
+			case 'quaoar': new Quaoar();    //Quaoar (kuiper belt reference holy shit)
+			case '11': new Eleven();    //ELEVEN, LEAVE THE DEMOGORGON ALONE FOR FUCKS SAKE
+			case 'bike': new Bike();    //Bike
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -381,23 +382,25 @@ class PlayState extends MusicBeatState
 		luaDebugGroup.cameras = [camOther];
 		add(luaDebugGroup);
 		#end
-
+		
 		if (!stageData.hide_girlfriend)
 		{
 			if(SONG.gfVersion == null || SONG.gfVersion.length < 1) SONG.gfVersion = 'gf'; //Fix for the Chart Editor
 			gf = new Character(0, 0, SONG.gfVersion);
 			startCharacterPos(gf);
 			gfGroup.scrollFactor.set(0.95, 0.95);
-			gfGroup.add(gf);
+			//gfGroup.add(gf);
 		}
+		
 
 		dad = new Character(0, 0, SONG.player2);
 		startCharacterPos(dad, true);
-		dadGroup.add(dad);
+		//dadGroup.add(dad);
 
 		boyfriend = new Character(0, 0, SONG.player1, true);
 		startCharacterPos(boyfriend);
-		boyfriendGroup.add(boyfriend);
+		//boyfriendGroup.add(boyfriend);
+		
 		
 		if(stageData.objects != null && stageData.objects.length > 0)
 		{
@@ -408,9 +411,11 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			/*
 			add(gfGroup);
 			add(dadGroup);
 			add(boyfriendGroup);
+			*/
 		}
 		
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
@@ -437,11 +442,13 @@ class PlayState extends MusicBeatState
 			camPos.y += gf.getGraphicMidpoint().y + gf.cameraPosition[1];
 		}
 
+		/*
 		if(dad.curCharacter.startsWith('gf')) {
 			dad.setPosition(GF_X, GF_Y);
 			if(gf != null)
 				gf.visible = false;
 		}
+		*/
 		
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
 		// STAGE SCRIPTS
@@ -449,9 +456,11 @@ class PlayState extends MusicBeatState
 		#if HSCRIPT_ALLOWED startHScriptsNamed('stages/' + curStage + '.hx'); #end
 
 		// CHARACTER SCRIPTS
+		
 		if(gf != null) startCharacterScripts(gf.curCharacter);
 		startCharacterScripts(dad.curCharacter);
 		startCharacterScripts(boyfriend.curCharacter);
+		
 		#end
 
 		uiGroup = new FlxSpriteGroup();
@@ -688,8 +697,8 @@ class PlayState extends MusicBeatState
 	#end
 
 	public function reloadHealthBarColors() {
-		healthBar.setColors(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
-			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
+		healthBar.setColors(FlxColor.fromRGB(255, 0, 0),
+			FlxColor.fromRGB(0, 255, 0));
 	}
 
 	public function addCharacterToList(newCharacter:String, type:Int) {
@@ -955,7 +964,7 @@ class PlayState extends MusicBeatState
 			for (i in 0...opponentStrums.length) {
 				setOnScripts('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnScripts('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				//if(ClientPrefs.data.middleScroll) opponentStrums.members[i].visible = false;
+				opponentStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
@@ -1020,7 +1029,7 @@ class PlayState extends MusicBeatState
 						{
 							note.copyAlpha = false;
 							note.alpha = note.multAlpha;
-							if(ClientPrefs.data.middleScroll && !note.mustPress)
+							if(!note.mustPress)
 								note.alpha *= 0.35;
 						}
 					});
@@ -1395,7 +1404,7 @@ class PlayState extends MusicBeatState
 						}
 
 						if (sustainNote.mustPress) sustainNote.x += FlxG.width / 2; // general offset
-						else if(ClientPrefs.data.middleScroll)
+						else
 						{
 							sustainNote.x += 310;
 							if(noteColumn > 1) //Up and Right
@@ -1408,7 +1417,7 @@ class PlayState extends MusicBeatState
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else if(ClientPrefs.data.middleScroll)
+				else
 				{
 					swagNote.x += 310;
 					if(noteColumn > 1) //Up and Right
@@ -1500,7 +1509,7 @@ class PlayState extends MusicBeatState
 	public var skipArrowStartTween:Bool = false; //for lua
 	private function generateStaticArrows(player:Int):Void
 	{
-		var strumLineX:Float = ClientPrefs.data.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X;
+		var strumLineX:Float = STRUM_X_MIDDLESCROLL;
 		var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 		for (i in 0...4)
 		{
@@ -1509,7 +1518,7 @@ class PlayState extends MusicBeatState
 			if (player < 1)
 			{
 				if(!ClientPrefs.data.opponentStrums) targetAlpha = 0;
-				else if(ClientPrefs.data.middleScroll) targetAlpha = 0.35;
+				else targetAlpha = 0.35;
 			}
 
 			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player);
@@ -1526,12 +1535,9 @@ class PlayState extends MusicBeatState
 				playerStrums.add(babyArrow);
 			else
 			{
-				if(ClientPrefs.data.middleScroll)
-				{
-					babyArrow.x += 310;
-					if(i > 1) { //Up and Right
-						babyArrow.x += FlxG.width / 2 + 25;
-					}
+				babyArrow.x += 310;
+				if(i > 1) { //Up and Right
+					babyArrow.x += FlxG.width / 2 + 25;
 				}
 				opponentStrums.add(babyArrow);
 			}
@@ -2908,7 +2914,7 @@ class PlayState extends MusicBeatState
 		var lastCombo:Int = combo;
 		combo = 0;
 
-		health -= subtract * healthLoss;
+		health -= (subtract * 0.5) * healthLoss;
 		if(!practiceMode) songScore -= 10;
 		if(!endingSong) songMisses++;
 		totalPlayed++;
